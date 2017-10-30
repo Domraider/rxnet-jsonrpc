@@ -4,6 +4,7 @@ namespace Rxnet\JsonRpc;
 use GuzzleHttp\Psr7\Response;
 use Ramsey\Uuid\Uuid;
 use Rxnet\Http\Http;
+use Rxnet\JsonRpc\Exceptions\UnexpectedServerAdressException;
 use Rxnet\JsonRpc\Mappers\AbstractJsonRpcMapper;
 
 class JsonRpc
@@ -25,7 +26,7 @@ class JsonRpc
     public function __construct($server, array $headers = [], AbstractJsonRpcMapper $defaultMapper = null)
     {
         if (!filter_var($server, FILTER_VALIDATE_URL)) {
-            throw new \Exception("Unexpected server address");
+            throw new UnexpectedServerAdressException();
         }
 
         $this->server = $server;

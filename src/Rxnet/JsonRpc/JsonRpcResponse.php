@@ -2,6 +2,10 @@
 namespace Rxnet\JsonRpc;
 
 use GuzzleHttp\Psr7\Response;
+use Rxnet\JsonRpc\Exceptions\BadStatusCodeException;
+use Rxnet\JsonRpc\Exceptions\ErrorResponseException;
+use Rxnet\JsonRpc\Exceptions\IncorrectResponseException;
+use Rxnet\JsonRpc\Exceptions\InvalidFormatException;
 
 class JsonRpcResponse
 {
@@ -53,33 +57,33 @@ class JsonRpcResponse
         $this->request = $request;
 
         if ($response->getStatusCode() >= 300) {
-            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
+            throw new BadStatusCodeException($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         try {
             $data = \GuzzleHttp\json_decode((string)$response->getBody(), true);
         } catch (\InvalidArgumentException $e) {
-            throw new \Exception("Invalid response format [{$e->getCode()}:{$e->getMessage()}]");
+            throw new InvalidFormatException("Invalid response format [{$e->getCode()}:{$e->getMessage()}]");
         }
 
         if (!isset($data['id'])) {
-            throw new \Exception("Incorrect json response : no id field");
+            throw new IncorrectResponseException("Incorrect json response : no id field");
         }
         $this->id = $data['id'];
 
         if ($this->id !== $request->getId()) {
-            throw new \Exception("Incorrect json response : id inconstancy");
+            throw new IncorrectResponseException("Incorrect json response : id inconstancy");
         }
 
         if (isset($data['error']) && $data['error']) {
             $message = isset($data['error']['message']) ? $data['error']['message'] : 'unknown';
             $code = isset($data['error']['code']) ? $data['error']['code'] : 'unknown';
 
-            throw new \Exception($message, $code);
+            throw new ErrorResponseException($message, $code);
         }
 
         if (!isset($data['result'])) {
-            throw new \Exception("Incorrect json response : no result field");
+            throw new IncorrectResponseException("Incorrect json response : no result field");
         }
         $this->result = $data['result'];
 
