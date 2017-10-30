@@ -12,7 +12,7 @@ vendor/bin/peridot tests
 
 ## EXAMPLES
 ### simple example
-```
+```php
 $cli = new \Rxnet\JsonRpc\JsonRpc($server);
 
 $cli->call("test")
@@ -30,7 +30,7 @@ $cli->call("test")
 ```
 
 run it from :
-```
+```bash
 php examples/simple.php
 ```
 
@@ -39,7 +39,7 @@ php examples/simple.php
 API doc is here : https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods
 
 #### get coinbase balance
-```
+```php
 $cli = new \Rxnet\JsonRpc\JsonRpc($server, [], new \Rxnet\JsonRpc\Mappers\EthereumMapper());
 
 $cli->call("eth_coinbase")
@@ -66,6 +66,6 @@ $cli->call("eth_coinbase")
 ```
 
 run it from :
-```
+```bash
 php examples/geth/get_coinbase_balance.php
 ```
