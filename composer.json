@@ -16,5 +16,10 @@
         "psr-4": {
             "Rxnet\\JsonRpc\\" : "src/Rxnet/JsonRpc"
         }
+    },
+    "require-dev": {
+        "peridot-php/peridot": "^1.19",
+        "peridot-php/leo": "~1.0",
+        "peridot-php/peridot-prophecy-plugin": "~1.0"
     }
 }

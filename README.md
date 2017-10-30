@@ -1,7 +1,13 @@
 # rxnet-jsonrpc
 json rpc bundle for rxnet
 
-## simple example
+## TESTS
+```bash
+vendor
+```
+
+## EXAMPLES
+### simple example
 ```
 $cli = new \Rxnet\JsonRpc\JsonRpc($server);
 
@@ -24,11 +30,11 @@ run it from :
 php examples/simple.php
 ```
 
-## ethereum examples
+### ethereum examples
 
 API doc is here : https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods
 
-### get coinbase balance
+#### get coinbase balance
 ```
 $cli = new \Rxnet\JsonRpc\JsonRpc($server, [], new \Rxnet\JsonRpc\Mappers\EthereumMapper());
 

@@ -53,7 +53,7 @@ class JsonRpcResponse
         $this->request = $request;
 
         if ($response->getStatusCode() >= 300) {
-            throw new \Exception("Invalid response [{$response->getStatusCode()}:{$response->getReasonPhrase()}]");
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         try {
