@@ -1,5 +1,8 @@
 # rxnet-jsonrpc
-json rpc bundle for rxnet
+
+JSON RPC bundle for rxnet.
+
+[![License](https://poser.pugx.org/domraider/rxnet/license)](https://packagist.org/packages/domraider/rxnet)
 
 ## simple example
 ```
