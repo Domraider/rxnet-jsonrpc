@@ -25,6 +25,9 @@ php examples/simple.php
 ```
 
 ## ethereum examples
+
+API doc is here : https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods
+
 ### get coinbase balance
 ```
 $cli = new \Rxnet\JsonRpc\JsonRpc($server, [], new \Rxnet\JsonRpc\Mappers\EthereumMapper());
