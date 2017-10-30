@@ -1,0 +1,20 @@
+{
+    "name": "domraider/rxnet-jsonrpc",
+    "description": "json rpc bundle for rxnet",
+    "type": "library",
+    "require": {
+        "domraider/rxnet": "^0.6.15"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Etienne Roudeix",
+            "email": "etienne.roudeix@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rxnet\\JsonRpc\\" : "src/Rxnet/JsonRpc"
+        }
+    }
+}
