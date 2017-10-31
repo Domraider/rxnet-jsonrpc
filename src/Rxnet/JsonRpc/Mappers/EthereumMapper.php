@@ -39,4 +39,12 @@ class EthereumMapper extends AbstractJsonRpcMapper
         // parse to human readable
         return hexdec($result) / 10**18;
     }
+
+    public function parseEthEstimateGas(JsonRpcResponse $response)
+    {
+        $result = $response->getResult();
+
+        // parse to human readable
+        return hexdec($result) / 10**18;
+    }
 }

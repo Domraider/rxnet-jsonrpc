@@ -32,4 +32,14 @@ describe('Ethereum mapper', function() {
 
         expect($result)->to->equal(70.173134711);
     });
+    it('eth_estimateGas returns human readable result (amount in eth)', function() {
+        $this->response->getRequest()
+            ->willReturn(new \Rxnet\JsonRpc\JsonRpcRequest('eth_estimateGas', [], 'the_id'));
+        $this->response->getResult()
+            ->willReturn('0x3cdd90e39f8c9e600');
+
+        $result = $this->mapper->map($this->response->reveal());
+
+        expect($result)->to->equal(70.173134711);
+    });
 });
