@@ -7,7 +7,7 @@ JSON RPC bundle for rxnet.
 
 ## TESTS
 ```bash
-vendor
+vendor/bin/peridot tests
 ```
 
 ## EXAMPLES
