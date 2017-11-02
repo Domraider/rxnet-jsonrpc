@@ -3,6 +3,7 @@
 JSON RPC bundle for rxnet.
 
 [![License](https://poser.pugx.org/domraider/rxnet/license)](https://packagist.org/packages/domraider/rxnet)
+[![Build Status](https://travis-ci.org/Domraider/rxnet-jsonrpc.svg?branch=master)](https://travis-ci.org/Domraider/rxnet-jsonrpc)
 
 ## TESTS
 ```bash
