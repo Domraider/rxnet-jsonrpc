@@ -45,8 +45,8 @@ $cli->call("eth_coinbase")
         )->map(function ($gaz) use ($coinbase, $bin) {
             return [
                 'from' => $coinbase,
-                'gaz' => "0x" . dechex($gaz * 10 ** 18),
-                'bin' => $bin,
+                'gas' => "0x" . dechex($gaz * 10 ** 18),
+                'data' => $bin,
             ];
         });
     })
