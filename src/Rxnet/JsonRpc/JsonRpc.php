@@ -3,6 +3,8 @@ namespace Rxnet\JsonRpc;
 
 use GuzzleHttp\Psr7\Response;
 use Ramsey\Uuid\Uuid;
+use Rx\Observable;
+use Rx\ObserverInterface;
 use Rxnet\Http\Http;
 use Rxnet\JsonRpc\Mappers\AbstractJsonRpcMapper;
 
@@ -47,22 +49,25 @@ class JsonRpc
 
         $request = new JsonRpcRequest($method, $params, $id);
 
-        return $this->client->post(
-            $this->server,
-            [
-                'headers' => $this->headers,
-                'json' => $request->toArray(),
-            ]
-        )
-            ->map(function (Response $response) use ($request) {
-                return new JsonRpcResponse($request, $response);
-            })
-            ->map(function (JsonRpcResponse $response) {
-                if (null === $this->defaultMapper) {
-                    return $response;
-                }
+        return Observable::create(function (ObserverInterface $o) use ($request) {
+            return $this->client->post(
+                $this->server,
+                [
+                    'headers' => $this->headers,
+                    'json' => $request->toArray(),
+                ]
+            )
+                ->map(function (Response $response) use ($request) {
+                    return new JsonRpcResponse($request, $response);
+                })
+                ->map(function (JsonRpcResponse $response) {
+                    if (null === $this->defaultMapper) {
+                        return $response;
+                    }
 
-                return $this->defaultMapper->map($response);
-            });
+                    return $this->defaultMapper->map($response);
+                })
+                ->subscribe($o);
+        });
     }
 }
